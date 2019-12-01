@@ -9,8 +9,9 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { ClassService } from './services/class.service';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 @NgModule({
     declarations: [],
@@ -26,7 +27,9 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
         NzIconModule,
         NzMenuModule,
         NzModalModule,
+        NzListModule,
+        NzSelectModule,
     ],
-    providers: [AuthGuardService, ClassService],
+    providers: [AuthGuardService],
 })
 export class SharedModule {}
