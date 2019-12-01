@@ -1,7 +1,14 @@
 <nz-layout class="layout">
     <nz-sider>
         <div class="logo"></div>
-        <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+
+        <ul nz-menu nzTheme="dark" nzMode="inline">
+            <li nz-menu-item *ngFor="let class of classService.classes$ | async">
+                <i nz-icon nzType="container" nzTheme="outline"></i> <span>{{ class.name }}</span>
+            </li>
+            <li nz-menu-item (click)="newClass()">
+                <i nz-icon nzType="plus" nzTheme="outline"></i> <span>New class</span>
+            </li>
             <li nz-menu-item (click)="logOut()">
                 <i nz-icon nzType="logout" nzTheme="outline"></i> <span>Log Out</span>
             </li>
@@ -15,3 +22,18 @@
         </nz-content>
     </nz-layout>
 </nz-layout>
+
+<nz-modal
+    [(nzVisible)]="isVisible"
+    nzTitle="Add new class"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="submitForm()"
+>
+    <form nz-form [formGroup]="classForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Please input class name!">
+                <input formControlName="className" nz-input placeholder="Class name" />
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</nz-modal>
