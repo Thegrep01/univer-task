@@ -1,1 +1,17 @@
-Hello !
+<nz-layout class="layout">
+    <nz-sider>
+        <div class="logo"></div>
+        <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+            <li nz-menu-item (click)="logOut()">
+                <i nz-icon nzType="logout" nzTheme="outline"></i> <span>Log Out</span>
+            </li>
+        </ul>
+    </nz-sider>
+    <nz-layout>
+        <nz-content>
+            <div class="inner-content">
+                Content
+            </div>
+        </nz-content>
+    </nz-layout>
+</nz-layout>
