@@ -18,14 +18,10 @@ export class HomeComponent implements OnInit {
     constructor(private router: Router, private fb: FormBuilder, private store: Store<IStore>) {}
 
     public isVisible: boolean = false;
-    public isModalSubject: boolean = false;
 
     public classForm!: FormGroup;
-    public subjectForm!: FormGroup;
 
     public classList$!: Observable<Class[]>;
-
-    public listOfSelectedValue!: string[];
 
     public logOut(): void {
         localStorage.clear();
@@ -33,17 +29,11 @@ export class HomeComponent implements OnInit {
     }
 
     public newClass() {
-        this.listOfSelectedValue = [];
         this.isVisible = true;
-    }
-    public newSubject() {
-        this.listOfSelectedValue = [];
-        this.isModalSubject = true;
     }
 
     public handleCancel() {
         this.isVisible = false;
-        this.isModalSubject = false;
     }
     public submitForm() {
         this.isVisible = false;
@@ -51,21 +41,11 @@ export class HomeComponent implements OnInit {
         this.classForm.reset();
     }
 
-    public submitSubjectForm() {
-        this.isModalSubject = false;
-        this.store.dispatch(
-            addSubject({ subjectName: this.subjectForm.value.subjName, classes: this.listOfSelectedValue })
-        );
-        this.subjectForm.reset();
-    }
-
     public ngOnInit(): void {
         this.classForm = this.fb.group({
             className: [null, [Validators.required]],
         });
-        this.subjectForm = this.fb.group({
-            subjName: [null, [Validators.required]],
-        });
+
         this.classList$ = this.store.pipe(select(selectClasses));
     }
 }

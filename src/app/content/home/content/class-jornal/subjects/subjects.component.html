@@ -1,11 +1,33 @@
-<nz-list [nzDataSource]="subjectByClass$ | async" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
-    <ng-template #item let-item>
-        <nz-list-item>
-            <nz-list-item-meta [nzTitle]="nzTitle">
-                <ng-template #nzTitle>
-                    <a [routerLink]="['/subject']">{{ item.name }}</a>
-                </ng-template>
-            </nz-list-item-meta>
-        </nz-list-item>
-    </ng-template>
-</nz-list>
+<div class="content">
+    <nz-list [nzDataSource]="subjectByClass$ | async" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
+        <ng-template #item let-item>
+            <nz-list-item>
+                <nz-list-item-meta [nzTitle]="nzTitle">
+                    <ng-template #nzTitle>
+                        <a [routerLink]="['/subject']">{{ item.name }}</a>
+                    </ng-template>
+                </nz-list-item-meta>
+            </nz-list-item>
+        </ng-template>
+    </nz-list>
+    <button class="btn" nz-button nzType="primary" (click)="newSubject()">
+        <i nz-icon nzType="plus" nzTheme="outline"></i>Add Subject
+    </button>
+</div>
+<nz-modal
+    [(nzVisible)]="isModalSubject"
+    nzTitle="Add new subject"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="submitSubjectForm()"
+>
+    <nz-select
+        style="width: 100%;"
+        nzMode="tags"
+        nzPlaceHolder="Please enter new subject or select from exisiting"
+        [(ngModel)]="listOfSelectedValue"
+    >
+        <nz-option *ngFor="let option of allSubjects$ | async" [nzLabel]="option.name" [nzValue]="option.name">{{
+            option
+        }}</nz-option>
+    </nz-select>
+</nz-modal>

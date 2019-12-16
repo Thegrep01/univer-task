@@ -9,3 +9,8 @@ export const selectSubjectsByClass = createSelector(
     (subjects: ISubject[], props: { className: string }) =>
         subjects.filter(subj => subj.classes && !!subj.classes.find(cl => cl === props.className))
 );
+export const selectSubjectsNotInClass = createSelector(
+    selectSubjects,
+    (subjects: ISubject[], props: { className: string }) =>
+        subjects.filter(subj => subj.classes && !subj.classes.find(cl => cl === props.className))
+);

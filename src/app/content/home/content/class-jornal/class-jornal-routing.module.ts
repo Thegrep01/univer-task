@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SubsectsComponent } from './subjects/subjects.component';
+import { JornalComponent } from './jornal/jornal.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: SubsectsComponent,
+        component: JornalComponent,
     },
     {
         path: 'subject',
-        component: SubsectsComponent,
+        component: JornalComponent,
     },
 ];
 

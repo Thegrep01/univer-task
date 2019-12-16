@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ClassJornalRountingModule } from './class-jornal-routing.module';
 import { SubsectsComponent } from './subjects/subjects.component';
+import { StudentsComponent } from './students/students.component';
+import { JornalComponent } from './jornal/jornal.component';
 
 @NgModule({
-    declarations: [SubsectsComponent],
+    declarations: [SubsectsComponent, StudentsComponent, JornalComponent],
     imports: [CommonModule, ClassJornalRountingModule, SharedModule],
 })
 export class СlassJornalModule {}

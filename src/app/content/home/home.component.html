@@ -6,9 +6,6 @@
             <li nz-menu-item *ngFor="let class of classList$ | async" [routerLink]="['/', class.name]">
                 <i nz-icon nzType="container" nzTheme="outline"></i> <span>{{ class.name }}</span>
             </li>
-            <li nz-menu-item (click)="newSubject()">
-                <i nz-icon nzType="plus" nzTheme="outline"></i> <span>New subject</span>
-            </li>
             <li nz-menu-item (click)="newClass()">
                 <i nz-icon nzType="plus" nzTheme="outline"></i> <span>New class</span>
             </li>
@@ -18,39 +15,16 @@
         </ul>
     </nz-sider>
     <nz-layout>
-        <nz-content>
-            <div class="inner-content">
-                <router-outlet></router-outlet>
-            </div>
-        </nz-content>
+        <router-outlet></router-outlet>
     </nz-layout>
-</nz-layout>
 
-<nz-modal [(nzVisible)]="isVisible" nzTitle="Add new class" (nzOnCancel)="handleCancel()" (nzOnOk)="submitForm()">
-    <form nz-form [formGroup]="classForm" (ngSubmit)="submitForm()">
-        <nz-form-item>
-            <nz-form-control nzErrorTip="Please input class name!">
-                <input formControlName="className" nz-input placeholder="Class name" />
-            </nz-form-control>
-        </nz-form-item>
-    </form>
-</nz-modal>
-<nz-modal
-    [(nzVisible)]="isModalSubject"
-    nzTitle="Add new subject"
-    (nzOnCancel)="handleCancel()"
-    (nzOnOk)="submitSubjectForm()"
->
-    <form nz-form [formGroup]="subjectForm" (ngSubmit)="submitSubjectForm()">
-        <nz-form-item>
-            <nz-form-control nzErrorTip="Please input subject name!">
-                <input formControlName="subjName" nz-input placeholder="Subject name" />
-            </nz-form-control>
-        </nz-form-item>
-    </form>
-    <nz-select style="width: 100%;" nzMode="multiple" nzPlaceHolder="Please classes" [(ngModel)]="listOfSelectedValue">
-        <nz-option *ngFor="let option of classList$ | async" [nzLabel]="option.name" [nzValue]="option.name">{{
-            option
-        }}</nz-option>
-    </nz-select>
-</nz-modal>
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="Add new class" (nzOnCancel)="handleCancel()" (nzOnOk)="submitForm()">
+        <form nz-form [formGroup]="classForm" (ngSubmit)="submitForm()">
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Please input class name!">
+                    <input formControlName="className" nz-input placeholder="Class name" />
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+    </nz-modal>
+</nz-layout>

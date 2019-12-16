@@ -1,0 +1,25 @@
+<div class="content">
+    <nz-list [nzDataSource]="studentList$ | async" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
+        <ng-template #item let-item>
+            <nz-list-item>
+                <nz-list-item-meta [nzTitle]="nzTitle">
+                    <ng-template #nzTitle>
+                        <a>{{ item }}</a>
+                    </ng-template>
+                </nz-list-item-meta>
+            </nz-list-item>
+        </ng-template>
+    </nz-list>
+    <button class="btn" nz-button nzType="primary" (click)="addStudent()">
+        <i nz-icon nzType="plus" nzTheme="outline"></i>Add Student
+    </button>
+</div>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Add new student" (nzOnCancel)="handleCancel()" (nzOnOk)="submitForm()">
+    <form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Please input student name!">
+                <input formControlName="studName" nz-input placeholder="Student name" />
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</nz-modal>

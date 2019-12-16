@@ -3,7 +3,7 @@ import * as SubjectActions from '../actions/subject.actions';
 
 export interface ISubject {
     name: string;
-    classes?: string[];
+    classes: string[];
 }
 
 const initialState: ISubject[] = [
@@ -14,8 +14,26 @@ const initialState: ISubject[] = [
 
 export const subjectReducer = createReducer(
     initialState,
-    on(SubjectActions.addSubject, (state, subject) => [
-        ...state,
-        { name: subject.subjectName, classes: subject.classes },
-    ])
+    on(SubjectActions.addSubject, (state, subject) => {
+        if (state.find(obj => obj.name === subject.subjectName)) {
+            return [
+                ...state.map(i => {
+                    if (i.name === subject.subjectName) {
+                        return {
+                            ...i,
+                            classes: [...i.classes, subject.classes],
+                        };
+                    }
+                    return i;
+                }),
+            ];
+        }
+        return [
+            ...state,
+            {
+                name: subject.subjectName,
+                classes: [subject.classes],
+            },
+        ];
+    })
 );
