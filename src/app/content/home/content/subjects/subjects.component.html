@@ -4,7 +4,7 @@
             <nz-list-item>
                 <nz-list-item-meta [nzTitle]="nzTitle">
                     <ng-template #nzTitle>
-                        <a [routerLink]="['/subject']">{{ item.name }}</a>
+                        <a [routerLink]="['/class/lesson']" (click)="setSubjectAndClass(item.name)">{{ item.name }}</a>
                     </ng-template>
                 </nz-list-item-meta>
             </nz-list-item>

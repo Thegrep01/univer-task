@@ -12,11 +12,13 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 @NgModule({
     declarations: [],
     exports: [
         CommonModule,
+        NzDatePickerModule,
         HttpClientModule,
         ReactiveFormsModule,
         FormsModule,

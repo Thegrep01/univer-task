@@ -6,7 +6,7 @@ import { ISubject } from 'src/app/store/reducers/subject.reducer';
 import { IStore } from 'src/app/store';
 import { Store, select } from '@ngrx/store';
 import { selectSubjectsByClass, selectSubjectsNotInClass } from 'src/app/store/selectors/subject.selectors';
-import { addSubject } from '../../../../../store/actions/subject.actions';
+import { addSubject, setCurrentSubject } from '../../../../store/actions/subject.actions';
 
 @Component({
     selector: 'app-subjects',
@@ -14,7 +14,7 @@ import { addSubject } from '../../../../../store/actions/subject.actions';
     styleUrls: ['./subjects.component.scss'],
 })
 export class SubsectsComponent implements OnInit, OnDestroy {
-    constructor(private route: ActivatedRoute, private store: Store<IStore>) {}
+    constructor(private store: Store<IStore>) {}
 
     public subjectByClass$!: Observable<ISubject[]>;
     public allSubjects$!: Observable<ISubject[]>;
@@ -26,6 +26,9 @@ export class SubsectsComponent implements OnInit, OnDestroy {
     public newSubject() {
         this.listOfSelectedValue = [];
         this.isModalSubject = true;
+    }
+    public setSubjectAndClass(subjectName: string) {
+        this.store.dispatch(setCurrentSubject({ subjectName }));
     }
 
     public submitSubjectForm() {
@@ -39,10 +42,9 @@ export class SubsectsComponent implements OnInit, OnDestroy {
         this.isModalSubject = false;
     }
     public ngOnInit() {
-        this.route.params.pipe(takeUntil(this.destroy$)).subscribe(params => {
-            this.className = params['id'];
-            this.subjectByClass$ = this.store.pipe(select(selectSubjectsByClass, { className: params['id'] }));
-            this.allSubjects$ = this.store.pipe(select(selectSubjectsNotInClass, { className: params['id'] }));
+        this.store.select('selectedClass').subscribe(data => {
+            this.subjectByClass$ = this.store.pipe(select(selectSubjectsByClass, { className: data }));
+            this.allSubjects$ = this.store.pipe(select(selectSubjectsNotInClass, { className: data }));
         });
     }
     public ngOnDestroy(): void {

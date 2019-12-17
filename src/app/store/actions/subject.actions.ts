@@ -1,6 +1,4 @@
 import { createAction, props } from '@ngrx/store';
 
-export const addSubject = createAction(
-    '[Subject] Add new subject',
-    props<{ subjectName: string; classes: string }>()
-);
+export const addSubject = createAction('[Subject] Add new subject', props<{ subjectName: string; classes: string }>());
+export const setCurrentSubject = createAction('[Subject] Set current subject', props<{ subjectName: string }>());

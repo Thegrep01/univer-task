@@ -24,3 +24,8 @@ export const classReducer = createReducer(
         }),
     ])
 );
+
+export const selectedClassReducer = createReducer(
+    '',
+    on(ClassActions.setCurrentClass, (_, { className }) => className)
+);

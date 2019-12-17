@@ -8,8 +8,8 @@ const routes: Routes = [
         component: HomeComponent,
         children: [
             {
-                path: ':id',
-                loadChildren: './content/class-jornal/class-jornal.module#СlassJornalModule',
+                path: 'class',
+                loadChildren: './content/class-jornal.module#СlassJornalModule',
             },
         ],
     },

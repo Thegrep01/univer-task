@@ -14,7 +14,7 @@ import { HomeModule } from './content/home/home.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { reducers } from './store';
+import { reducers, storageMetaReducer } from './store';
 
 registerLocaleData(en);
 
@@ -28,7 +28,7 @@ registerLocaleData(en);
         BrowserAnimationsModule,
         LoginModule,
         HomeModule,
-        StoreModule.forRoot(reducers),
+        StoreModule.forRoot(reducers, { metaReducers: [storageMetaReducer] }),
         StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     ],
     providers: [{ provide: NZ_I18N, useValue: en_US }],

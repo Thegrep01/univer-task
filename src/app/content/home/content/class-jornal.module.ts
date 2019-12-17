@@ -5,9 +5,10 @@ import { ClassJornalRountingModule } from './class-jornal-routing.module';
 import { SubsectsComponent } from './subjects/subjects.component';
 import { StudentsComponent } from './students/students.component';
 import { JornalComponent } from './jornal/jornal.component';
+import { LessonComponent } from './lesson/lesson.component';
 
 @NgModule({
-    declarations: [SubsectsComponent, StudentsComponent, JornalComponent],
+    declarations: [SubsectsComponent, StudentsComponent, JornalComponent, LessonComponent],
     imports: [CommonModule, ClassJornalRountingModule, SharedModule],
 })
 export class СlassJornalModule {}
