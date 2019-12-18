@@ -7,6 +7,6 @@ export const selectLessons = (state: IStore) => state.lessons;
 export const selectCurrLessons = createSelector(
     selectLessons,
     (lessons: Lessons[], props: { currClass: string; subject: string }) => {
-        return lessons.find(lesson => lesson.class === props.currClass && lesson.subject === props.subject);
+        return lessons.filter(lesson => lesson.class === props.currClass && lesson.subject === props.subject);
     }
 );

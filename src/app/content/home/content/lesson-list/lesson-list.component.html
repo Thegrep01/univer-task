@@ -1,13 +1,13 @@
-<nz-layout>
+<nz-layout *ngIf="lessons$ | async as lessons">
     <nz-content>
         <div class="inner-content">
             <div class="content">
-                <nz-list [nzDataSource]="lessons$ | async" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
+                <nz-list [nzDataSource]="lessons" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
                     <ng-template #item let-item>
                         <nz-list-item>
                             <nz-list-item-meta [nzTitle]="nzTitle">
                                 <ng-template #nzTitle>
-                                    {{ item | date: 'dd/MM/yyyy' }}
+                                    <a (click)="selectLesson(item.id)">{{ item.dates | date: 'dd/MM/yyyy' }}</a>
                                 </ng-template>
                             </nz-list-item-meta>
                         </nz-list-item>
@@ -18,6 +18,12 @@
                 </button>
             </div>
         </div>
+    </nz-content>
+</nz-layout>
+
+<nz-layout *ngIf="selectedLesson">
+    <nz-content>
+        <div class="inner-content"></div>
     </nz-content>
 </nz-layout>
 
