@@ -6,9 +6,10 @@ import { SubsectsComponent } from './subjects/subjects.component';
 import { StudentsComponent } from './students/students.component';
 import { JornalComponent } from './jornal/jornal.component';
 import { LessonListComponent } from './lesson-list/lesson-list.component';
+import { LessonComponent } from './lesson/lesson.component';
 
 @NgModule({
-    declarations: [SubsectsComponent, StudentsComponent, JornalComponent, LessonListComponent],
-    imports: [CommonModule, ClassJornalRountingModule, SharedModule],
+  declarations: [SubsectsComponent, StudentsComponent, JornalComponent, LessonListComponent, LessonComponent],
+  imports: [CommonModule, ClassJornalRountingModule, SharedModule],
 })
 export class СlassJornalModule {}

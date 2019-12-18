@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { AuthGuardService } from './services/auth-guard.service';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -13,21 +13,23 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzRateModule } from 'ng-zorro-antd/rate';
 
 @NgModule({
     declarations: [],
     exports: [
-        CommonModule,
-        NzDatePickerModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        FormsModule,
-        NzFormModule,
-        NzInputModule,
-        NzButtonModule,
-        NzLayoutModule,
-        NzIconModule,
-        NzMenuModule,
+      CommonModule,
+      NzRateModule,
+      NzDatePickerModule,
+      HttpClientModule,
+      ReactiveFormsModule,
+      FormsModule,
+      NzFormModule,
+      NzInputModule,
+      NzButtonModule,
+      NzLayoutModule,
+      NzIconModule,
+      NzMenuModule,
         NzModalModule,
         NzListModule,
         NzSelectModule,

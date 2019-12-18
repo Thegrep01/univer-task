@@ -7,6 +7,7 @@ import { flatMap, takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { addnewStudent } from '../../../../store/actions/class.actions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Student } from '../../../../store/reducers/class.reducer';
 
 @Component({
     selector: 'app-students',
@@ -15,8 +16,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class StudentsComponent implements OnInit, OnDestroy {
     constructor(private store: Store<IStore>, private fb: FormBuilder, private route: ActivatedRoute) {}
-    public studentList$!: Observable<string[]>;
-    public destroy$: Subject<void> = new Subject<void>();
+
+  public studentList$!: Observable<Student[]>;
+  public destroy$: Subject<void> = new Subject<void>();
     public className: string = '';
     public isVisible: boolean = false;
     public form!: FormGroup;
