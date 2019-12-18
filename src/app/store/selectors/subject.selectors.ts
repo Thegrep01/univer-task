@@ -3,7 +3,6 @@ import { IStore } from '..';
 import { ISubject } from '../reducers/subject.reducer';
 
 export const selectSubjects = (state: IStore) => state.subjectsList;
-export const selectCurrSubj = (state: IStore) => state.selectedSubject;
 
 export const selectSubjectsByClass = createSelector(
     selectSubjects,

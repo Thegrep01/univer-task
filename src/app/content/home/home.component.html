@@ -3,12 +3,7 @@
         <div class="logo"></div>
 
         <ul nz-menu nzTheme="dark" nzMode="inline">
-            <li
-                nz-menu-item
-                *ngFor="let class of classList$ | async"
-                [routerLink]="['/class']"
-                (click)="setClass(class.name)"
-            >
+            <li nz-menu-item *ngFor="let class of classList$ | async" [routerLink]="['class', class.name]">
                 <i nz-icon nzType="container" nzTheme="outline"></i> <span>{{ class.name }}</span>
             </li>
             <li nz-menu-item (click)="newClass()">

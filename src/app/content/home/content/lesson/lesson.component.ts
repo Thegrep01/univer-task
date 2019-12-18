@@ -1,13 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import {  Store } from '@ngrx/store';
 import { IStore } from '../../../../store';
-import { combineLatest, Observable, Subject } from 'rxjs';
-import { Lessons } from '../../../../store/reducers/lesson.reducer';
+import {  Observable, Subject } from 'rxjs';
 import { selectCurrLessons } from '../../../../store/selectors/lesson.selectors';
-import { map, takeUntil, tap } from 'rxjs/operators';
-import { selectCurrClass } from '../../../../store/selectors/class.selectors';
-import { selectCurrSubj } from '../../../../store/selectors/subject.selectors';
+import { map, takeUntil } from 'rxjs/operators';
 import { createNewLesson } from '../../../../store/actions/lesson.actions';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-lesson',
@@ -15,15 +13,24 @@ import { createNewLesson } from '../../../../store/actions/lesson.actions';
     styleUrls: ['./lesson.component.scss'],
 })
 export class LessonComponent implements OnInit, OnDestroy {
-    constructor(private store: Store<IStore>) {}
+    constructor(private store: Store<IStore>, private route: ActivatedRoute) {}
     public destroy$: Subject<void> = new Subject<void>();
 
     public lessons$!: Observable<Date[] | undefined>;
     public isVisible: boolean = false;
     public date: Date | null = null;
 
+    public className: string = '';
+    public subjName: string = '';
+
     ngOnInit() {
-        this.lessons$ = this.store.select(selectCurrLessons).pipe(map(data => data && data.dates));
+        this.route.paramMap.pipe(takeUntil(this.destroy$)).subscribe(params => {
+            this.className = params.get('classId') || '';
+            this.subjName = params.get('subjId') || '';
+            this.lessons$ = this.store
+                .select(selectCurrLessons, { currClass: this.className, subject: this.subjName })
+                .pipe(map(data => data && data.dates));
+        });
     }
 
     public newLesson() {
@@ -35,16 +42,9 @@ export class LessonComponent implements OnInit, OnDestroy {
 
     public addNewLesson() {
         this.isVisible = false;
-        combineLatest(this.store.select(selectCurrClass), this.store.select(selectCurrSubj))
-            .pipe(
-                takeUntil(this.destroy$),
-                map(([cl, subj]) => {
-                    this.store.dispatch(
-                        createNewLesson({ className: cl, subject: subj, date: this.date || new Date() })
-                    );
-                })
-            )
-            .subscribe();
+        this.store.dispatch(
+            createNewLesson({ className: this.className, subject: this.subjName, date: this.date || new Date() })
+        );
     }
     public ngOnDestroy(): void {
         this.destroy$.next();

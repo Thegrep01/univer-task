@@ -1,6 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
 import * as ClassActions from '../actions/class.actions';
-import { addnewStudent } from '../actions/class.actions';
 
 export interface Class {
     name: string;
@@ -25,7 +24,3 @@ export const classReducer = createReducer(
     ])
 );
 
-export const selectedClassReducer = createReducer(
-    '',
-    on(ClassActions.setCurrentClass, (_, { className }) => className)
-);

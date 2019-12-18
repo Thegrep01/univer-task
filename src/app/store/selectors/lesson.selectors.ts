@@ -1,17 +1,12 @@
 import { IStore } from '..';
 import { createSelector } from '@ngrx/store';
-
-import { Class } from '../reducers/class.reducer';
-import { selectCurrSubj } from './subject.selectors';
-import { selectCurrClass } from './class.selectors';
+import { Lessons } from '../reducers/lesson.reducer';
 
 export const selectLessons = (state: IStore) => state.lessons;
 
 export const selectCurrLessons = createSelector(
     selectLessons,
-    selectCurrClass,
-    selectCurrSubj,
-    (lessons, currClass, subject) => {
-        return lessons.find(lesson => lesson.class === currClass && lesson.subject === subject);
+    (lessons: Lessons[], props: { currClass: string; subject: string }) => {
+        return lessons.find(lesson => lesson.class === props.currClass && lesson.subject === props.subject);
     }
 );

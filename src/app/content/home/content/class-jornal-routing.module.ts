@@ -9,7 +9,7 @@ const routes: Routes = [
         component: JornalComponent,
     },
     {
-        path: 'lesson',
+        path: 'lesson/:subjId',
         component: LessonComponent,
     },
 ];

@@ -5,4 +5,3 @@ export const addnewStudent = createAction(
     '[Class] Add new student',
     props<{ className: string; studentName: string }>()
 );
-export const setCurrentClass = createAction('[Class] Set current class', props<{ className: string }>());

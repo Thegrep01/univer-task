@@ -37,8 +37,3 @@ export const subjectReducer = createReducer(
         ];
     })
 );
-
-export const selectedSubjectReducer = createReducer(
-    '',
-    on(SubjectActions.setCurrentSubject, (_, { subjectName }) => subjectName)
-);

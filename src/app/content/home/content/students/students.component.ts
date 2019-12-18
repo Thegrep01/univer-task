@@ -1,12 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { selectClasses, selectStudentsByClass } from '../../../../store/selectors/class.selectors';
+import { selectStudentsByClass } from '../../../../store/selectors/class.selectors';
 import { IStore } from '../../../../store';
 import { Observable, Subject } from 'rxjs';
-import { flatMap, takeUntil, tap } from 'rxjs/operators';
+import { flatMap, takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
-import { selectSubjectsByClass } from '../../../../store/selectors/subject.selectors';
-import { addClass, addnewStudent } from '../../../../store/actions/class.actions';
+import { addnewStudent } from '../../../../store/actions/class.actions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -15,7 +14,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
     styleUrls: ['./students.component.scss'],
 })
 export class StudentsComponent implements OnInit, OnDestroy {
-    constructor(private store: Store<IStore>, private fb: FormBuilder) {}
+    constructor(private store: Store<IStore>, private fb: FormBuilder, private route: ActivatedRoute) {}
     public studentList$!: Observable<string[]>;
     public destroy$: Subject<void> = new Subject<void>();
     public className: string = '';
@@ -26,10 +25,10 @@ export class StudentsComponent implements OnInit, OnDestroy {
         this.form = this.fb.group({
             studName: [null, [Validators.required]],
         });
-        this.store.select('selectedClass').subscribe(data => {
-            this.className = data;
+        this.route.paramMap.pipe(takeUntil(this.destroy$)).subscribe(data => {
+            this.className = data.get('classId') || '';
             this.studentList$ = this.store.pipe(
-                select(selectStudentsByClass, { className: data }),
+                select(selectStudentsByClass, { className: this.className }),
                 flatMap(a => a)
             );
         });
