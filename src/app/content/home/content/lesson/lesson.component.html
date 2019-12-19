@@ -1,14 +1,12 @@
-<!-- TODO make this list as shared-->
 <nz-list [nzDataSource]="studentList$ | async" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
-  <ng-template #item let-item>
-    <nz-list-item>
-      <nz-list-item-meta [nzTitle]="nzTitle">
-        <ng-template #nzTitle>
-          <a>{{ item.name }}</a>
-          <!--                   TODO make this  as pipe-->
-          <nz-rate [ngModel]="getValue(item)" (ngModelChange)="changeMark($event, item.name)"></nz-rate>
-        </ng-template>
-      </nz-list-item-meta>
-    </nz-list-item>
-  </ng-template>
+    <ng-template #item let-item>
+        <nz-list-item>
+            <nz-list-item-meta [nzTitle]="nzTitle">
+                <ng-template #nzTitle>
+                    <a>{{ item.name }}</a>
+                    <nz-rate [ngModel]="getValue(item)" (ngModelChange)="changeMark($event, item.name)"></nz-rate>
+                </ng-template>
+            </nz-list-item-meta>
+        </nz-list-item>
+    </ng-template>
 </nz-list>

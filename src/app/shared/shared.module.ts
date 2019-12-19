@@ -14,25 +14,27 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzRateModule } from 'ng-zorro-antd/rate';
+import { ContentWrapperComponent } from './components/content-wrapper/content-wrapper.component';
 
 @NgModule({
-    declarations: [],
+    declarations: [ContentWrapperComponent],
     exports: [
-      CommonModule,
-      NzRateModule,
-      NzDatePickerModule,
-      HttpClientModule,
-      ReactiveFormsModule,
-      FormsModule,
-      NzFormModule,
-      NzInputModule,
-      NzButtonModule,
-      NzLayoutModule,
-      NzIconModule,
-      NzMenuModule,
+        CommonModule,
+        NzRateModule,
+        NzDatePickerModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        FormsModule,
+        NzFormModule,
+        NzInputModule,
+        NzButtonModule,
+        NzLayoutModule,
+        NzIconModule,
+        NzMenuModule,
         NzModalModule,
         NzListModule,
         NzSelectModule,
+        ContentWrapperComponent,
     ],
     providers: [AuthGuardService],
 })

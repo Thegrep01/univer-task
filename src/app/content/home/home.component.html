@@ -1,7 +1,6 @@
 <nz-layout class="layout">
     <nz-sider>
         <div class="logo"></div>
-
         <ul nz-menu nzTheme="dark" nzMode="inline">
             <li nz-menu-item *ngFor="let class of classList$ | async" [routerLink]="['class', class.name]">
                 <i nz-icon nzType="container" nzTheme="outline"></i> <span>{{ class.name }}</span>

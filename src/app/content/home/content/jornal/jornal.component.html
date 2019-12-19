@@ -1,14 +1,8 @@
 <nz-layout>
-    <nz-content>
-        <div class="inner-content">
-            <h1>Students</h1>
-            <app-students></app-students>
-        </div>
-    </nz-content>
-    <nz-content>
-        <div class="inner-content">
-          <h1>Subjects</h1>
-            <app-subjects></app-subjects>
-        </div>
-    </nz-content>
+    <app-content-wrapper title="Students">
+        <app-students></app-students>
+    </app-content-wrapper>
+    <app-content-wrapper title="Subjects">
+        <app-subjects></app-subjects>
+    </app-content-wrapper>
 </nz-layout>
