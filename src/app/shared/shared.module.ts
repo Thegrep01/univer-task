@@ -15,27 +15,29 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzRateModule } from 'ng-zorro-antd/rate';
 import { ContentWrapperComponent } from './components/content-wrapper/content-wrapper.component';
+import { MarksPipe } from './pipes/marks.pipe';
 
 @NgModule({
-    declarations: [ContentWrapperComponent],
-    exports: [
-        CommonModule,
-        NzRateModule,
-        NzDatePickerModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        FormsModule,
-        NzFormModule,
-        NzInputModule,
-        NzButtonModule,
-        NzLayoutModule,
-        NzIconModule,
-        NzMenuModule,
-        NzModalModule,
-        NzListModule,
-        NzSelectModule,
-        ContentWrapperComponent,
-    ],
+  declarations: [ContentWrapperComponent, MarksPipe],
+  exports: [
+    CommonModule,
+    NzRateModule,
+    NzDatePickerModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NzFormModule,
+    NzInputModule,
+    NzButtonModule,
+    NzLayoutModule,
+    NzIconModule,
+    NzMenuModule,
+    NzModalModule,
+    NzListModule,
+    NzSelectModule,
+    ContentWrapperComponent,
+    MarksPipe,
+  ],
     providers: [AuthGuardService],
 })
 export class SharedModule {}

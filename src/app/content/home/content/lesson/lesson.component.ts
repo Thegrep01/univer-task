@@ -35,16 +35,6 @@ export class LessonComponent implements OnInit, OnDestroy {
     this.destroy$.next();
   }
 
-  public getValue(st: Student) {
-    if (st.results) {
-      const studentMark: { lessonId: number; mark: number } | undefined = st.results.find(
-        i => i.lessonId === this.lessonId,
-      );
-      return studentMark ? studentMark.mark : 0;
-    }
-    return 0;
-  }
-
   public changeMark(mark: number, st: string) {
     this.store.dispatch(updateStudentMarks({ studentName: st, lessonId: this.lessonId, mark }));
   }
